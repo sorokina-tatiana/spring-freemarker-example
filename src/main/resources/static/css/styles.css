@@ -1,0 +1,30 @@
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-list li {
+  margin-left: 20px;
+}
+
+.button {
+  background-color: grey;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.button.button--danger {
+  background-color: #ED6A61;
+}
+
+.button.button--danger:hover {
+  background-color: #C20A19;
+}
