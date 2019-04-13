@@ -1,26 +1,25 @@
+<#import "macros/ui-library.ftl" as ui/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <#include "components/html-heads.ftl">
 <body>
-<h3>Welcome!</h3>
-<a href="http://localhost:8080/blog/search/">Search blog</a>
-<a href="http://localhost:8080/add/">Add blog</a>
-<#if blogs?has_content>
-        <#list blogs as blog>
-            <fieldset>
-                <p>id: ${blog.getId()}</p>
-                <p>title: ${blog.getTitle()}</p>
-                <p>content: ${blog.getContent()}</p>
-                <form action="http://localhost:8080/update/${blog.getId()}">
-                    <input type="submit" value="Update" />
-                </form>
-                <form action="http://localhost:8080/delete/${blog.getId()}">
-                    <input type="submit" value="Delete" />
-                </form>
-            </fieldset>
-        </#list>
-    </ul>
-<#else>
-    No blogs added yet!
-</#if>
+    <#include "components/nav.ftl">
+    <#switch pageType>
+    <#case "home">
+        <#include "pages/home.ftl">
+    <#break>
+    <#case "add">
+        <#include "pages/add.ftl">
+    <#break>
+    <#case "delete">
+        <#include "pages/delete.ftl">
+    <#break>
+    <#case "search">
+        <#include "pages/search.ftl">
+    <#break>
+    <#case "update">
+        <#include "pages/update.ftl">
+    <#break>
+    </#switch>
 </body>
 </html>

@@ -19,6 +19,7 @@ public class BlogController {
     @RequestMapping({"/", "/blog"})
     public String index(Model model) {
         model.addAttribute("blogs", blogRepository.findAll());
+        model.addAttribute("pageType", "home");
         return "index";
     }
 
@@ -28,20 +29,23 @@ public class BlogController {
         List<Blog> blogs = new ArrayList<>();
         blogs.add(blogRepository.findById(blogId).get());
         model.addAttribute("blogs", blogs);
+        model.addAttribute("pageType", "home");
         return "index";
     }
 
     @GetMapping("/blog/search")
     public String search(Model model, @RequestParam(value = "text", required = false) String text) {
         if (text != null) {
-            model.addAttribute("blogs", blogRepository.findByTitleContainingOrContentContaining(text, text));
+            model.addAttribute("blogs", blogRepository.findByTitleOrContent(text, text));
         }
-        return "search";
+        model.addAttribute("pageType", "search");
+        return "index";
     }
 
     @GetMapping("/add")
-    public String add() {
-        return "add";
+    public String add(Model model) {
+        model.addAttribute("pageType", "add");
+        return "index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -52,14 +56,16 @@ public class BlogController {
             model.addAttribute("validationError", false);
             model.addAttribute("blog", blogRepository.save(new Blog(title, content)));
         }
-        return "add";
+        model.addAttribute("pageType", "add");
+        return "index";
     }
 
     @GetMapping("/update/{id}")
     public String update(Model model, @PathVariable String id) {
         int blogId = Integer.parseInt(id);
         model.addAttribute("blog", blogRepository.findById(blogId).get());
-        return "update";
+        model.addAttribute("pageType", "update");
+        return "index";
     }
 
     @RequestMapping("/update/{id}")
@@ -72,14 +78,16 @@ public class BlogController {
             blog.setContent(content);
             model.addAttribute("updatedBlog", blogRepository.save(blog));
         }
-        return "update";
+        model.addAttribute("pageType", "update");
+        return "index";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable String id) {
         int blogId = Integer.parseInt(id);
         model.addAttribute("blog", blogRepository.findById(blogId).get());
-        return "delete";
+        model.addAttribute("pageType", "delete");
+        return "index";
     }
 
     @RequestMapping("delete/{id}")
@@ -87,6 +95,7 @@ public class BlogController {
         blogRepository.delete(blog);
         model.addAttribute("deletion", true);
         model.addAttribute("blog", null);
-        return "delete";
+        model.addAttribute("pageType", "delete");
+        return "index";
     }
 }

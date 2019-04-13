@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h3>Blog updating</h3>
-<a href="http://localhost:8080/">Home</a>
-<a href="http://localhost:8080/blog/search/">Search blog</a>
-<a href="http://localhost:8080/add/">Add blog</a>
+<h1>Blog updating</h1>
 <fieldset>
     <legend>Update blog ID "${blog.getId()}"</legend>
     <form name="blog" method="post">
@@ -21,9 +15,5 @@
         </#if>
 </fieldset>
 <#if updatedBlog?has_content>
-    <p>id: ${updatedBlog.getId()}</p>
-    <p>title: ${updatedBlog.getTitle()}</p>
-    <p>content: ${updatedBlog.getContent()}</p>
+   <@ui.blogItem blog=updatedBlog/>
 </#if>
-</body>
-</html>
