@@ -11,6 +11,8 @@ public interface BlogServiceRepository extends JpaRepository<Blog, Integer> {
 
     // custom query to search to blog post by title or content
     List<Blog> findByTitleOrContent(String text, String textAgain);
+
+
     public Blog save(Blog blog);
 
 }

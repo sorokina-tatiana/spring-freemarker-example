@@ -16,12 +16,14 @@ public class BlogController {
     @Autowired
     private BlogServiceRepository blogRepository;
 
+
     @RequestMapping({"/", "/blog"})
     public String index(Model model) {
         model.addAttribute("blogs", blogRepository.findAll());
         model.addAttribute("pageType", "home");
         return "index";
     }
+
 
     @RequestMapping("/blog/{id}")
     public String show(Model model, @PathVariable String id) {
@@ -33,6 +35,7 @@ public class BlogController {
         return "index";
     }
 
+
     @GetMapping("/blog/search")
     public String search(Model model, @RequestParam(value = "text", required = false) String text) {
         if (text != null) {
@@ -42,11 +45,13 @@ public class BlogController {
         return "index";
     }
 
+
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("pageType", "add");
         return "index";
     }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Model model, String title, String content) {
@@ -60,6 +65,7 @@ public class BlogController {
         return "index";
     }
 
+
     @GetMapping("/update/{id}")
     public String update(Model model, @PathVariable String id) {
         int blogId = Integer.parseInt(id);
@@ -67,6 +73,7 @@ public class BlogController {
         model.addAttribute("pageType", "update");
         return "index";
     }
+
 
     @RequestMapping("/update/{id}")
     public String update(Model model, Blog blog, String title, String content) {
@@ -82,6 +89,7 @@ public class BlogController {
         return "index";
     }
 
+
     @GetMapping("/delete/{id}")
     public String delete(Model model, @PathVariable String id) {
         int blogId = Integer.parseInt(id);
@@ -89,6 +97,7 @@ public class BlogController {
         model.addAttribute("pageType", "delete");
         return "index";
     }
+
 
     @RequestMapping("delete/{id}")
     public String delete(Model model, Blog blog) {
