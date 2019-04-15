@@ -1,16 +1,15 @@
-<h1>Blog updating</h1>
+<h1><#if pageType=="add">Add new blog<#else>Blog updating</#if></h1>
 <fieldset>
-    <legend>Update blog ID "${blog.getId()}"</legend>
     <form name="blog" method="post">
-        Title: <input type="text" name="title" value="${blog.getTitle()}"/>
-        Content: <input type="text" name="content" value="${blog.getContent()}"/>
+        Title: <input type="text" name="title" <#if blog??> value="${blog.getTitle()}</#if>"/>
+        Content: <input type="text" name="content" <#if blog??> value="${blog.getContent()}" </#if>/>
         <input type="submit" value="Save" />
         </form>
         <#if validationError!false>
-            <p style="color:red">All fields should be filled</p>
+            <p style="color:red">${errorText}</p>
         <#else>
             <#if validationError??>
-                <p style="color:green">Blog updated successfully</p>
+                <p style="color:green">${message}</p>
             </#if>
         </#if>
 </fieldset>

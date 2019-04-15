@@ -8,9 +8,6 @@
     <#case "home">
         <#include "pages/home.ftl">
     <#break>
-    <#case "add">
-        <#include "pages/add.ftl">
-    <#break>
     <#case "delete">
         <#include "pages/delete.ftl">
     <#break>
@@ -18,6 +15,7 @@
         <#include "pages/search.ftl">
     <#break>
     <#case "update">
+    <#case "add">
         <#include "pages/update.ftl">
     <#break>
     </#switch>

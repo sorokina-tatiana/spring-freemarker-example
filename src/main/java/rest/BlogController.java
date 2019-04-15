@@ -57,9 +57,11 @@ public class BlogController {
     public String add(Model model, String title, String content) {
         if (title.isEmpty() || content.isEmpty()) {
             model.addAttribute("validationError", true);
+            model.addAttribute("errorText", "All fields should be filled");
         } else {
             model.addAttribute("validationError", false);
-            model.addAttribute("blog", blogRepository.save(new Blog(title, content)));
+            model.addAttribute("updatedBlog", blogRepository.save(new Blog(title, content)));
+            model.addAttribute("message", "Blog added successfully");
         }
         model.addAttribute("pageType", "add");
         return "index";
@@ -79,11 +81,13 @@ public class BlogController {
     public String update(Model model, Blog blog, String title, String content) {
         if (title.isEmpty() || content.isEmpty()) {
             model.addAttribute("validationError", true);
+            model.addAttribute("errorText", "All fields should be filled");
         } else {
             model.addAttribute("validationError", false);
             blog.setTitle(title);
             blog.setContent(content);
             model.addAttribute("updatedBlog", blogRepository.save(blog));
+            model.addAttribute("message", "Blog updated successfully");
         }
         model.addAttribute("pageType", "update");
         return "index";
