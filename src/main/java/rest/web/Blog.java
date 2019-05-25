@@ -1,4 +1,4 @@
-package rest;
+package rest.web;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,8 @@
-<h1><#if pageType=="add">Add new blog<#else>Blog updating</#if></h1>
+<h1>
+    <#if pageType=="add">Add new blog
+    <#else>Blog updating
+    </#if>
+</h1>
 <fieldset>
     <form name="blog" method="post">
         Title: <input type="text" name="title" <#if blog??> value="${blog.getTitle()}</#if>"/>

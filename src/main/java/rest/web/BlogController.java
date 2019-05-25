@@ -1,4 +1,4 @@
-package rest;
+package rest.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class BlogController {
     }
 
 
-    @RequestMapping("/blog/{id}")
+    @GetMapping("/blog/{id}")
     public String show(Model model, @PathVariable String id) {
         int blogId = Integer.parseInt(id);
         List<Blog> blogs = new ArrayList<>();
